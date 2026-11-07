@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lh-kernel-hardening"
+version = "0.1.0"
+description = "Evaluates /etc/sysctl.conf, /proc/sys runtime snapshots, kernel boot parameters, and /etc/modprobe.d blacklists against KSPP and CIS benchmarks for ASLR, kptr_restrict, eBPF restrictions, and SYN flood defenses."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [
+    { name = "logihertzsystems", email = "ops@logihertz.com" },
+    { name = "Sameer Tawade (Creator, Founder, Director & Sole Developer)", email = "ops@logihertz.com" },
+]
+maintainers = [
+    { name = "Logihertz Systems (OPC) Private Limited", email = "ops@logihertz.com" },
+]
+keywords = [
+    "linux-kernel",
+    "sysctl",
+    "kernel-hardening",
+    "kspp",
+    "cis-benchmark",
+    "os-security",
+    "logihertz",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.4.0",
+    "bandit>=1.7.8",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/Logihertz-Systems-OPC-Pvt-Ltd/lh-kernel-hardening"
+Repository = "https://github.com/Logihertz-Systems-OPC-Pvt-Ltd/lh-kernel-hardening"
+Documentation = "https://github.com/Logihertz-Systems-OPC-Pvt-Ltd/lh-kernel-hardening#documentation"
+Issues = "https://github.com/Logihertz-Systems-OPC-Pvt-Ltd/lh-kernel-hardening/issues"
+
+[project.scripts]
+lh-kernel = "lh_kernel_hardening.cli:app"
+lh-kernel-hardening = "lh_kernel_hardening.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lh_kernel_hardening"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]
+skips = ["B101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --strict-markers"
+
