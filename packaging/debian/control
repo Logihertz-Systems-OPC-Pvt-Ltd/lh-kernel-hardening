@@ -1,0 +1,9 @@
+Package: lh-kernel-hardening
+Version: 0.1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Sameer Tawade <ops@logihertz.com>
+Homepage: https://www.logihertz.com
+Description: lh-kernel - KSPP Benchmark Alignment & Sysctl Hardening Coefficient
+ Linux kernel security posture auditor evaluating runtime sysctl parameters, Kconfig flags, ASLR, eBPF restrictions, ptrace scopes, and kernel module blacklists against KSPP and CIS benchmarks.
